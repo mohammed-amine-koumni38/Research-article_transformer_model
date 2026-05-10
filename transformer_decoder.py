@@ -320,9 +320,7 @@ class DecoderOnlyTransformer(nn.Module):
         return logits
 
 
-# ========================
 #  PLANNING DU TAUX D'APPRENTISSAGE
-# ========================
 def get_warmup_cosine_scheduler(optimizer, warmup_steps, total_steps, min_lr_ratio=0.05):
     """Échauffement linéaire pendant warmup_steps, puis décroissance cosinus jusqu'à min_lr_ratio * lr_de_base."""
     def lr_lambda(step):
@@ -333,9 +331,7 @@ def get_warmup_cosine_scheduler(optimizer, warmup_steps, total_steps, min_lr_rat
     return torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda)
 
 
-# ========================
 #  ENTRAÎNEMENT / ÉVALUATION
-# ========================
 def build_criterion(pad_loss_weight, label_smoothing=0.0):
     if pad_loss_weight < 0:
         return nn.CrossEntropyLoss(ignore_index=PAD_IDX, label_smoothing=label_smoothing)
@@ -478,9 +474,7 @@ def train_model(
 
 
 
-# ========================
 #  PRINCIPAL
-# ========================
 def main():
     print("=" * 70)
     print("DECODER-ONLY TRANSFORMER PIPELINE")
